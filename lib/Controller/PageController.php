@@ -226,12 +226,12 @@ self::generatePassword();
 		curl_close($ch);
 		return array("link"=>$xml->data->url, "expiration"=>$xml->data->expiration, "raw"=>$output);
 	}
-	private static function getUserSubfolder() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_default_folder'); /*return "/files/Akten";*/}
-	private static function getExternalCloudURL() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_host');/*return "https://cloud.gera.de/";*/}
-	private static function getExternalCloudUser() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_user');/*return "austausch.e-akte";*/}
-	private static function getExternalCloudPassword() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_pass');/*return "austausch.e-akte";*/}	
-	private static function getExternalCloudExpirationDays() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_expiry');/*return 7;*/}
-	private static function getMailFrom() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_from');/*return "srvcloudintern@iuk.gera.de";*/}
-	private static function getMailFromName() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_from_name');/*return "Nextcloud Notifier";*/}
-	private static function getMailSubject() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_subject');/*return "E-Akte";*/}
+	private static function getUserSubfolder() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_default_folder');}
+	private static function getExternalCloudURL() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_host');}
+	private static function getExternalCloudUser() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_user');}
+	private static function getExternalCloudPassword() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_pass');}	
+	private static function getExternalCloudExpirationDays() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_expiry');}
+	private static function getMailFrom() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_from');}
+	private static function getMailFromName() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_from_name');}
+	private static function getMailSubject() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_subject');}
 }
