@@ -1,0 +1,15 @@
+{
+    "name": "Generic Trigger",
+    "description": "Implements an icon to trigger a filesystem operation",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Matthias Drobny"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}

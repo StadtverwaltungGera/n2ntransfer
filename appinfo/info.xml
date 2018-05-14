@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>generictrigger</id>
+    <name>Generic Trigger</name>
+    <summary>Implements an icon to trigger a filesystem operation</summary>
+    <description><![CDATA[Implements an icon to trigger a filesystem operation]]></description>
+    <version>0.0.6</version>
+    <licence>agpl</licence>
+    <author mail="info@drobny.it" homepage="https://drobny.it">Matthias Drobny</author>
+    <namespace>GenericTrigger</namespace>
+    <category>tools</category>
+    <bugs>https://drobny.it</bugs>
+    <dependencies>
+        <nextcloud min-version="12"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Generic Trigger</name>
+            <route>generictrigger.page.index</route>
+        </navigation>
+    </navigations>
+	<settings>
+        <admin>OCA\GenericTrigger\Settings\Admin</admin>
+    </settings>
+</info>
