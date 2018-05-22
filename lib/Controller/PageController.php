@@ -1,5 +1,5 @@
 <?php
-namespace OCA\GenericTrigger\Controller;
+namespace OCA\N2ntransfer\Controller;
 
 use OCP\IRequest;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -17,7 +17,6 @@ class PageController extends Controller {
 
 	public function __construct($AppName, IRequest $request, IURLGenerator $urlGenerator, IUserSession $userSession){
 		parent::__construct($AppName, $request);
-// print_r($userSession->getUser());
 		$this->urlGenerator = $urlGenerator;
 
 		$this->userdata = array(
@@ -32,9 +31,7 @@ class PageController extends Controller {
 		unset($this->files[0]);
 		sort($this->files);
 		$this->relPaths($this->files);
-		// self::getFilesizes($this->files);
 		$this->checked_files = isset($request->parameters["checked_files"]) ? $request->parameters["checked_files"] : array();
-		// print_r(\OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_password_cnt_alpha', '3'));
 	}
 
 	/**
@@ -42,8 +39,7 @@ class PageController extends Controller {
 	 * @NoCSRFRequired
 	 */
 	public function index() {
-self::generatePassword();
-		return new TemplateResponse('generictrigger', 'index', [
+		return new TemplateResponse('n2ntransfer', 'index', [
 			'userdata'	=>	$this->userdata,
 			'files'		=>	$this->files,
 		]);
@@ -99,7 +95,6 @@ self::generatePassword();
 
 	}
 	
-	// private function sendConfirmation($src, $meta) {
 	private function sendConfirmation($body) {
 		$mailer = \OC::$server->getMailer();
 		$message = $mailer->createMessage();
@@ -148,10 +143,10 @@ self::generatePassword();
 	}
 	
 	private static function generatePassword() {
-		// $useCapitalLetter	= \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_password_upper_alpha');
-		$cnt_alpha 		= \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_password_cnt_alpha');
-		$cnt_numbers	= \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_password_cnt_numbers');
-		$cnt_specChar	= \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_password_cnt_specialchars');
+		// $useCapitalLetter	= \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_password_upper_alpha');
+		$cnt_alpha 		= \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_password_cnt_alpha');
+		$cnt_numbers	= \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_password_cnt_numbers');
+		$cnt_specChar	= \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_password_cnt_specialchars');
 		$numberChars = '123456789';
 		$specialChars = '!$%&=?*-:;.,+~@_';
 		$secureChars = 'abcdefghjkmnpqrstuvwxyz';
@@ -213,11 +208,9 @@ self::generatePassword();
 		curl_setopt($ch, CURLOPT_USERPWD, $user.":".$pass);
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 		curl_setopt($ch, CURLOPT_POST, 1);
-// curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded', 'OCS-APIRequest: true'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $args);
-// curl_setopt($ch, CURLOPT_VERBOSE, 1);
 		
 		$output = curl_exec($ch);
 		$info = curl_getinfo($ch);
@@ -226,12 +219,12 @@ self::generatePassword();
 		curl_close($ch);
 		return array("link"=>$xml->data->url, "expiration"=>$xml->data->expiration, "raw"=>$output);
 	}
-	private static function getUserSubfolder() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_default_folder'); /*return "/files/Akten";*/}
-	private static function getExternalCloudURL() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_host');/*return "https://cloud.gera.de/";*/}
-	private static function getExternalCloudUser() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_user');/*return "austausch.e-akte";*/}
-	private static function getExternalCloudPassword() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_pass');/*return "austausch.e-akte";*/}	
-	private static function getExternalCloudExpirationDays() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_externalcloud_expiry');/*return 7;*/}
-	private static function getMailFrom() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_from');/*return "srvcloudintern@iuk.gera.de";*/}
-	private static function getMailFromName() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_from_name');/*return "Nextcloud Notifier";*/}
-	private static function getMailSubject() {return \OC::$server->getConfig()->getAppValue('generictrigger', 'generictrigger_mails_subject');/*return "E-Akte";*/}
+	private static function getUserSubfolder() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_default_folder'); /*return "/files/Akten";*/}
+	private static function getExternalCloudURL() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_host');/*return "https://cloud.gera.de/";*/}
+	private static function getExternalCloudUser() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_user');/*return "austausch.e-akte";*/}
+	private static function getExternalCloudPassword() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_pass');/*return "austausch.e-akte";*/}	
+	private static function getExternalCloudExpirationDays() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_expiry');/*return 7;*/}
+	private static function getMailFrom() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_from');/*return "srvcloudintern@iuk.gera.de";*/}
+	private static function getMailFromName() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_from_name');/*return "Nextcloud Notifier";*/}
+	private static function getMailSubject() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_subject');/*return "E-Akte";*/}
 }

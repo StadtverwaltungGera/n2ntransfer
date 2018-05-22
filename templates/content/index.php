@@ -1,13 +1,12 @@
 <?php
 $files = $_['files'];
-#script('myapp', 'script'); 
 ?>
 <script>
 
 </script>
-<h2>Folgende Unterordner sind innerhalb des Stammverzeichnisses (<?php echo $_['userdata']['homeRel'];?>) angelegt</h2>
+<h2><?php echo $l->t('n2ntransfer_visible_subfolders'); ?> (<?php echo $_['userdata']['homeRel'];?>)</h2>
 
-<form id="Generictrigger" class="section" method="POST">
+<form id="n2ntransfer" class="section" method="POST">
 <?php
 if(count($files)>0) {
 	$prev_level = -1;
@@ -42,11 +41,11 @@ if(count($files)>0) {
 	echo str_repeat("</ul></li>", $prev_level);
 ?>
 	</ul>
-<button type="button" id="checkAll" aria-data-checked="0">Alle markieren</button>
-<button type="submit">Abschicken</button>
+<button type="button" id="checkAll" aria-data-checked="0"><?php echo $l->t('n2ntransfer_markall'); ?></button>
+<button type="submit"><?php echo $l->t('n2ntransfer_submit'); ?></button>
 <?php
 } else {
-		echo "Keine Dateien gefunden";
+		echo $l->t('n2ntransfer_no_files_found');
 }
 ?>
 </form>

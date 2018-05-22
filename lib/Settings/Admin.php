@@ -2,13 +2,7 @@
 /**
 *	Icon by https://glyph.smarticons.co/
 */
-namespace OCA\GenericTrigger\Settings;
-// echo "<br/><br/><br/><br/>".__FILE__;
-// $h=fopen("generictrigger.log", "a+");
-// fwrite($h, date("Y-m-d H:i:s")."\n");
-// fclose($h);
-// die();
-// use OCA\Generictrigger\Collector;
+namespace OCA\n2ntransfer\Settings;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -33,7 +27,6 @@ class Admin implements ISettings {
          * @param IL10N $l
          */
         public function __construct(IConfig $config, IL10N $l) {
-        // public function __construct() {
                 $this->collector = $collector;
                 $this->config = $config;
                 $this->l = $l;
@@ -44,28 +37,21 @@ class Admin implements ISettings {
          */
         public function getForm() {
                 $parameters = [
-						'generictrigger_default_folder' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_default_folder', '/files/Akten'),
-						
-						'generictrigger_password_cnt_alpha' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_password_cnt_alpha', '3'),
-						'generictrigger_password_upper_alpha' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_password_upper_alpha', 'no'),
-						'generictrigger_password_cnt_numbers' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_password_cnt_numbers', '3'),
-						'generictrigger_password_cnt_specialchars' 	=> $this->config->getAppValue('generictrigger', 'generictrigger_password_cnt_specialchars', '3'),
+			'n2ntransfer_default_folder' 				=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_default_folder', '/files/Akten'),
+			'n2ntransfer_password_cnt_alpha' 			=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_cnt_alpha', '3'),
+			'n2ntransfer_password_upper_alpha' 		=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_upper_alpha', 'no'),
+			'n2ntransfer_password_cnt_numbers' 		=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_cnt_numbers', '3'),
+			'n2ntransfer_password_cnt_specialchars' 	=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_cnt_specialchars', '3'),
 
-						'generictrigger_externalcloud_host' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_externalcloud_host', ''),
-						'generictrigger_externalcloud_user' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_externalcloud_user', ''),
-						'generictrigger_externalcloud_expiry' 		=> $this->config->getAppValue('generictrigger', 'generictrigger_externalcloud_expiry', ''),
+			'n2ntransfer_externalcloud_host' 			=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_externalcloud_host', ''),
+			'n2ntransfer_externalcloud_user' 			=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_externalcloud_user', ''),
+			'n2ntransfer_externalcloud_expiry' 		=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_externalcloud_expiry', ''),
 
-						'generictrigger_mails_subject' 				=> $this->config->getAppValue('generictrigger', 'generictrigger_mails_subject', 'E-Akte'),
-						'generictrigger_mails_from_name' 			=> $this->config->getAppValue('generictrigger', 'generictrigger_mails_from_name', ''),
-						'generictrigger_mails_from' 				=> $this->config->getAppValue('generictrigger', 'generictrigger_mails_from', ''),
-						
-						
-						
+			'n2ntransfer_mails_subject' 				=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_mails_subject', 'E-Akte'),
+			'n2ntransfer_mails_from_name' 				=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_mails_from_name', ''),
+			'n2ntransfer_mails_from' 					=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_mails_from', ''),
                 ];
-/*
-generictrigger_externalcloud_pass
-*/
-                return new TemplateResponse('generictrigger', 'admin', $parameters);
+                return new TemplateResponse('n2ntransfer', 'admin', $parameters);
         }
 
         /**
@@ -73,10 +59,10 @@ generictrigger_externalcloud_pass
          */
 
         public function getSection() {
-                return 'sharing';
+		return 'sharing';
         }
-		public function getPriority() {
-			return 0;
-		}
+	public function getPriority() {
+		return 0;
+	}
 }
 ?>

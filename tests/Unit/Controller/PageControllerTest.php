@@ -1,12 +1,12 @@
 <?php
 
-namespace OCA\GenericTrigger\Tests\Unit\Controller;
+namespace OCA\n2ntransfer\Tests\Unit\Controller;
 
 use PHPUnit_Framework_TestCase;
 
 use OCP\AppFramework\Http\TemplateResponse;
 
-use OCA\GenericTrigger\Controller\PageController;
+use OCA\N2ntransfer\Controller\PageController;
 
 
 class PageControllerTest extends PHPUnit_Framework_TestCase {
@@ -17,7 +17,7 @@ class PageControllerTest extends PHPUnit_Framework_TestCase {
 		$request = $this->getMockBuilder('OCP\IRequest')->getMock();
 
 		$this->controller = new PageController(
-			'generictrigger', $request, $this->userId
+			'n2ntransfer', $request, $this->userId
 		);
 	}
 

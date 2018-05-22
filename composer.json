@@ -1,5 +1,5 @@
 {
-    "name": "Generic Trigger",
+    "name": "Nextcloud N2N transfer",
     "description": "Implements an icon to trigger a filesystem operation",
     "type": "project",
     "license": "AGPL",

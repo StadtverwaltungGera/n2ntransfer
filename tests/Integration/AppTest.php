@@ -1,6 +1,6 @@
 <?php
 
-namespace OCA\GenericTrigger\Tests\Integration\Controller;
+namespace OCA\n2ntransfer\Tests\Integration\Controller;
 
 use OCP\AppFramework\App;
 use Test\TestCase;
@@ -17,13 +17,13 @@ class AppTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $app = new App('generictrigger');
+        $app = new App('n2ntransfer');
         $this->container = $app->getContainer();
     }
 
     public function testAppInstalled() {
         $appManager = $this->container->query('OCP\App\IAppManager');
-        $this->assertTrue($appManager->isInstalled('generictrigger'));
+        $this->assertTrue($appManager->isInstalled('n2ntransfer'));
     }
 
 }
