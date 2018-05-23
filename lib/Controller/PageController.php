@@ -18,7 +18,6 @@ class PageController extends Controller {
 	public function __construct($AppName, IRequest $request, IURLGenerator $urlGenerator, IUserSession $userSession){
 		parent::__construct($AppName, $request);
 		$this->urlGenerator = $urlGenerator;
-
 		$this->userdata = array(
 			'uuid'		=>	$userSession->getUser()->getUID(),
 			'username'	=>	$userSession->getUser()->getDisplayName(),
@@ -92,9 +91,8 @@ class PageController extends Controller {
 		} else {
 			echo 'Fehler, Code:' . $res;
 		}
-
 	}
-	
+
 	private function sendConfirmation($body) {
 		$mailer = \OC::$server->getMailer();
 		$message = $mailer->createMessage();
@@ -165,7 +163,7 @@ class PageController extends Controller {
 	private static function uploadExternal($file) {
 		$user=self::getExternalCloudUser();
 		$pass=self::getExternalCloudPassword();
-		$dstFile=self::getExternalCloudURL()."remote.php/webdav/".basename($file);
+		$dstFile=self::getExternalCloudURL()."/remote.php/webdav/".basename($file);
 		$header="Destination: ".$dstFile;
 
 		$ch = curl_init();
@@ -187,7 +185,6 @@ class PageController extends Controller {
 
 		$output = curl_exec($ch);
 		$info = curl_getinfo($ch);
-
 		curl_close($ch);
 		fclose($fh_res);
 		return $dstFile;
@@ -216,6 +213,10 @@ class PageController extends Controller {
 		$info = curl_getinfo($ch);
 
 		$xml = simplexml_load_string($output);
+#$f=fopen("n2ntransfer.log" ,"a+");
+#fwrite($f, var_export($info, TRUE)."\n");
+#fwrite($f, var_export($xml, TRUE)."\n");
+#fclose($f);
 		curl_close($ch);
 		return array("link"=>$xml->data->url, "expiration"=>$xml->data->expiration, "raw"=>$output);
 	}

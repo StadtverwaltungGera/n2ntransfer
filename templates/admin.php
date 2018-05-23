@@ -27,7 +27,7 @@ script('n2ntransfer', 'settings-admin');
 	</p>
 	<!--
 	<p>
-		<input id="n2ntransfer_password_upper_alpha" name="n2ntransfer_password_upper_alpha" type="checkbox" class="checkbox" value="1" <?php if ($data['enabled']): ?> checked="checked"<?php endif; ?> />
+		<input id="n2ntransfer_password_upper_alpha" name="n2ntransfer_password_upper_alpha" type="checkbox" class="checkbox" value="1" <?php if ($_['n2ntransfer_password_upper_alpha']): ?> checked="checked"<?php endif; ?> />
 		<label for="n2ntransfer_password_upper_alpha"><?php p($l->t('n2ntransfer_password_upper_alpha')); ?></label>
 	</p>
 	-->
@@ -58,11 +58,11 @@ script('n2ntransfer', 'settings-admin');
 
 	<h3><?php p($l->t('n2ntransfer_externalcloud')); ?></h3>
 	<p>
-		<input id="n2ntransfer_externalcloud_host" name="n2ntransfer_externalcloud_host" type="text" class="" value="<?php echo $_['nextcloudn2ntransfer_externalcloud_host'];?>" />
+		<input id="n2ntransfer_externalcloud_host" name="n2ntransfer_externalcloud_host" type="text" class="" value="<?php echo $_['n2ntransfer_externalcloud_host'];?>" />
 		<label for="n2ntransfer_externalcloud_host"><?php p($l->t('n2ntransfer_externalcloud_host')); ?></label>
 	</p>
 	<p>
-		<input id="n2ntransfer_externalcloud_user" name="n2ntransfer_externalcloud_user" type="text" class="" value="<?php echo $_['nextcloudn2ntransfer_externalcloud_user'];?>" />
+		<input id="n2ntransfer_externalcloud_user" name="n2ntransfer_externalcloud_user" type="text" class="" value="<?php echo $_['n2ntransfer_externalcloud_user'];?>" />
 		<label for="n2ntransfer_externalcloud_user"><?php p($l->t('n2ntransfer_externalcloud_user')); ?></label>
 	</p>
 	<p>
@@ -70,20 +70,20 @@ script('n2ntransfer', 'settings-admin');
 		<label for="n2ntransfer_externalcloud_pass"><?php p($l->t('n2ntransfer_externalcloud_pass')); ?></label>
 	</p>
 	<p>
-		<input id="n2ntransfer_externalcloud_expiry" name="n2ntransfer_externalcloud_expiry" type="text" class="" value="<?php echo $_['nextcloudn2ntransfer_externalcloud_expiry'];?>" />
+		<input id="n2ntransfer_externalcloud_expiry" name="n2ntransfer_externalcloud_expiry" type="text" class="" value="<?php echo $_['n2ntransfer_externalcloud_expiry'];?>" />
 		<label for="n2ntransfer_externalcloud_expiry"><?php p($l->t('n2ntransfer_externalcloud_expiry')); ?></label>
 	</p>
 	<h3><?php p($l->t('Mail')); ?></h3>
 	<p>
-		<input id="n2ntransfer_mails_subject" name="n2ntransfer_mails_subject" type="text" class="" value="<?php echo $_['nextcloudn2ntransfer_mails_subject'];?>" />
+		<input id="n2ntransfer_mails_subject" name="n2ntransfer_mails_subject" type="text" class="" value="<?php echo $_['n2ntransfer_mails_subject'];?>" />
 		<label for="n2ntransfer_mails_subject"><?php p($l->t('n2ntransfer_mails_subject')); ?></label>
 	</p>
 	<p>
-		<input id="n2ntransfer_mails_from_name" name="n2ntransfer_mails_from_name" type="text" class="" value="<?php echo $_['nextcloudn2ntransfer_mails_from_name'];?>" />
+		<input id="n2ntransfer_mails_from_name" name="n2ntransfer_mails_from_name" type="text" class="" value="<?php echo $_['n2ntransfer_mails_from_name'];?>" />
 		<label for="n2ntransfer_mails_from_name"><?php p($l->t('n2ntransfer_mails_from_name')); ?></label>
 	</p>
 	<p>
-		<input id="n2ntransfer_mails_from" name="n2ntransfer_mails_from" type="text" class="" value="<?php echo $_['nextcloudn2ntransfer_mails_from'];?>" />
+		<input id="n2ntransfer_mails_from" name="n2ntransfer_mails_from" type="text" class="" value="<?php echo $_['n2ntransfer_mails_from'];?>" />
 		<label for="n2ntransfer_mails_from"><?php p($l->t('n2ntransfer_mails_from')); ?></label>
 	</p>
 

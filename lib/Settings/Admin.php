@@ -11,7 +11,7 @@ use OCP\Settings\ISettings;
 class Admin implements ISettings {
 
         /** @var Collector */
-        private $collector;
+#        private $collector;
 
         /** @var IConfig */
         private $config;
@@ -27,7 +27,7 @@ class Admin implements ISettings {
          * @param IL10N $l
          */
         public function __construct(IConfig $config, IL10N $l) {
-                $this->collector = $collector;
+#                $this->collector = $collector;
                 $this->config = $config;
                 $this->l = $l;
         }
@@ -37,19 +37,19 @@ class Admin implements ISettings {
          */
         public function getForm() {
                 $parameters = [
-			'n2ntransfer_default_folder' 				=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_default_folder', '/files/Akten'),
-			'n2ntransfer_password_cnt_alpha' 			=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_cnt_alpha', '3'),
-			'n2ntransfer_password_upper_alpha' 		=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_upper_alpha', 'no'),
-			'n2ntransfer_password_cnt_numbers' 		=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_cnt_numbers', '3'),
-			'n2ntransfer_password_cnt_specialchars' 	=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_password_cnt_specialchars', '3'),
+			'n2ntransfer_default_folder' 			=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_default_folder', '/files/Akten'),
+			'n2ntransfer_password_cnt_alpha'		=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_password_cnt_alpha', '3'),
+			'n2ntransfer_password_upper_alpha' 		=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_password_upper_alpha', 'no'),
+			'n2ntransfer_password_cnt_numbers' 		=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_password_cnt_numbers', '3'),
+			'n2ntransfer_password_cnt_specialchars' 	=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_password_cnt_specialchars', '3'),
 
-			'n2ntransfer_externalcloud_host' 			=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_externalcloud_host', ''),
-			'n2ntransfer_externalcloud_user' 			=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_externalcloud_user', ''),
-			'n2ntransfer_externalcloud_expiry' 		=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_externalcloud_expiry', ''),
+			'n2ntransfer_externalcloud_host'		=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_host', ''),
+			'n2ntransfer_externalcloud_user'		=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_user', ''),
+			'n2ntransfer_externalcloud_expiry' 		=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_expiry', ''),
 
-			'n2ntransfer_mails_subject' 				=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_mails_subject', 'E-Akte'),
-			'n2ntransfer_mails_from_name' 				=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_mails_from_name', ''),
-			'n2ntransfer_mails_from' 					=> $this->config->getAppValue('nextcloudn2ntransfer', 'n2ntransfer_mails_from', ''),
+			'n2ntransfer_mails_subject' 			=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_mails_subject', 'E-Akte'),
+			'n2ntransfer_mails_from_name' 			=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_mails_from_name', ''),
+			'n2ntransfer_mails_from' 			=> $this->config->getAppValue('n2ntransfer', 'n2ntransfer_mails_from', ''),
                 ];
                 return new TemplateResponse('n2ntransfer', 'admin', $parameters);
         }

@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-    jQuery("#n2ntransfer input, #Generictrigger button#checkAll").change(function() {
+    jQuery("#n2ntransfer input, #n2ntransfer button#checkAll").change(function() {
 		var cur=jQuery(this).attr('aria-data-current');
 		var level=jQuery(this).attr('aria-data-level');
 		var checked=this.checked;
