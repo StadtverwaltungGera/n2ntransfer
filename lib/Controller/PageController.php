@@ -8,16 +8,20 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 use OCP\IUserSession;
 use OCP\IURLGenerator;
+use OCP\IL10N;
 
 class PageController extends Controller {
 	private $userdata;
 	private $files;
 	private $checked_files;
 	protected $urlGenerator;
+	/** @var IL10N */
+	private $l;
 
-	public function __construct($AppName, IRequest $request, IURLGenerator $urlGenerator, IUserSession $userSession){
+	public function __construct($AppName, IRequest $request, IURLGenerator $urlGenerator, IUserSession $userSession, IL10N $l){
 		parent::__construct($AppName, $request);
 		$this->urlGenerator = $urlGenerator;
+		$this->l = $l;
 		$this->userdata = array(
 			'uuid'		=>	$userSession->getUser()->getUID(),
 			'username'	=>	$userSession->getUser()->getDisplayName(),
@@ -78,13 +82,9 @@ class PageController extends Controller {
 
 			if($zip->close()) {
 				$dstFile = self::uploadExternal(dirname($_SERVER['SCRIPT_FILENAME'])."/".$dst);
-				$body = implode("\n", $files)."\n";
-				$body .= "Passwort: ".$password."\n";
-				$body .= "Dateigröße in kB: ".round(filesize($dst)/1024, 1)."\n";
 				$share = self::getExternalCloudShareLink($dstFile);
-				$body .= "Link zum Download der Datei: ".$share['link']."\n";
-				$body .= "Ablauf der Freigabe: ".$share['expiration']."\n";
-				// $body.="##############\n".$share['raw']."###########\n";
+				$body = $this->l->t("n2ntransfer_mail_template %s %s %s %s %s", array(implode("\n", $files), $password, round(filesize($dst)/1024, 1), $share['link'], $share['expiration']));
+
 				$this->sendConfirmation($body);
 				unlink($dst);
 			}
@@ -213,19 +213,15 @@ class PageController extends Controller {
 		$info = curl_getinfo($ch);
 
 		$xml = simplexml_load_string($output);
-#$f=fopen("n2ntransfer.log" ,"a+");
-#fwrite($f, var_export($info, TRUE)."\n");
-#fwrite($f, var_export($xml, TRUE)."\n");
-#fclose($f);
 		curl_close($ch);
 		return array("link"=>$xml->data->url, "expiration"=>$xml->data->expiration, "raw"=>$output);
 	}
-	private static function getUserSubfolder() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_default_folder'); /*return "/files/Akten";*/}
-	private static function getExternalCloudURL() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_host');/*return "https://cloud.gera.de/";*/}
-	private static function getExternalCloudUser() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_user');/*return "austausch.e-akte";*/}
-	private static function getExternalCloudPassword() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_pass');/*return "austausch.e-akte";*/}	
-	private static function getExternalCloudExpirationDays() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_expiry');/*return 7;*/}
-	private static function getMailFrom() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_from');/*return "srvcloudintern@iuk.gera.de";*/}
-	private static function getMailFromName() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_from_name');/*return "Nextcloud Notifier";*/}
-	private static function getMailSubject() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_subject');/*return "E-Akte";*/}
+	private static function getUserSubfolder() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_default_folder');}
+	private static function getExternalCloudURL() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_host');}
+	private static function getExternalCloudUser() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_user');}
+	private static function getExternalCloudPassword() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_pass');}	
+	private static function getExternalCloudExpirationDays() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_externalcloud_expiry');}
+	private static function getMailFrom() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_from');}
+	private static function getMailFromName() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_from_name');}
+	private static function getMailSubject() {return \OC::$server->getConfig()->getAppValue('n2ntransfer', 'n2ntransfer_mails_subject');}
 }

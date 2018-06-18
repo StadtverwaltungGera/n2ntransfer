@@ -15,6 +15,7 @@
 "n2ntransfer_mails_subject" : "Emailbetreff",
 "n2ntransfer_mails_from_name" : "Absendername",
 "n2ntransfer_mails_from" : "Absender-Emailadresse",
+"n2ntransfer_mail_template %s %s %s %s %s" : "Dateien:\n%s\n\nPasswort: %s\nDateigröße in kB: %s\nLink zum Download der Datei: %s\nAblauf der Freigabe: %s\n\nFür das Entpacken der Datei ist ein Programm wie z.B. 7zip notwendig. Das unter Windows verfügbare Entpackprogramm (Doppelklick) fragt keine Passwörter ab und ist daher nicht ausreichend.",
 "n2ntransfer_visible_subfolders" : "Diese Unterordner sind im Hauptverzeichnis verfügbar.",
 "n2ntransfer_markall" : "Alles markieren",
 "n2ntransfer_submit" : "Abschicken",
